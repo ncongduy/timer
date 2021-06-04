@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-image: url(./background.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+input {
+    width: 200px;
+}
+
+button {
+    width: 100px;
+    color: #fff;
+    background-color: #82c8a0;
+}
+
+input,
+button {
+    position: relative;
+    left: 40%;
+    margin-top: 50px;
+    font-size: 30px;
+}
+
+p {
+    font-size: 100px;
+    text-align: center;
+    color: #fff;
+}
+
+#resetButton {
+    position: relative;
+    left: 45%;
+}
