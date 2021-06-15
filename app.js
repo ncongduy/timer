@@ -7,28 +7,32 @@ let isOngoing = false;
 const timerFunc = () => {
   if (isOngoing) return;
   const inputMinutes = document.getElementById("typeMinutes").value;
-  let remainingSeconds = inputMinutes * 60;
+  const startTimer = new Date().getTime();  
+  const endTimer = startTimer + inputMinutes*60*1000;
 
   //Check timer
-  const checkTimer = (timeInSecond) => {
-    if (timeInSecond < 0) {
+  const checkTimer = (time) => {
+    if (time <= 0) {
       isOngoing = false;
       clearInterval(runInterval);
       audio.play();
+      timerText.innerHTML = `0:0`;
     }
   };
 
   //Run timer
   const runInterval = setInterval(() => {
     isOngoing = true;
-    let minutes = Math.floor(remainingSeconds / 60);
-    let seconds = remainingSeconds % 60;
+    let currentTimer = new Date().getTime();
+    let countTimer = endTimer - currentTimer;
+    let minutes = Math.floor(countTimer / 60000) % 60;
+    let seconds = Math.floor(countTimer / 1000) % 60;
 
     //render minutes and seconds in browser
-    timerText.innerHTML = `${minutes}:${seconds}`;
+    timerText.innerHTML = `${minutes}:${seconds}`;  
+
     //if on time, play music
-    remainingSeconds--;
-    checkTimer(remainingSeconds);
+    checkTimer(countTimer);      
   }, 1000);
 };
 
